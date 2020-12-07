@@ -1,37 +1,27 @@
 import sys
-from itertools import combinations
 
 """
 N : 회의 수
 """
 i = 0
-cnt = 0
+cnt = 1
 N = int(sys.stdin.readline().rstrip())
 time = []
 
 while i < N:
     start, finish = map(int, sys.stdin.readline().rstrip().split())
-    time.append([start, finish])
+    time.append([finish, start])
     i += 1
 
 # 시간순 정렬
 time = sorted(time)
+now = time[0][0]
 
-for j in range(N):
-    # 조합 계산
-    combi_list = list(combinations(range(len(time)), j+1))
-    for l in combi_list:
-        check = True
-        # 조합 여부 확인
-        for k in range(len(l)-2):
-            if time[l[k]][1] > time[l[k+1]][0]:
-                check = False
-                break
-        if check:
-            cnt = j+1
-            break
-    # check == False
-    if not check:
-        break
+for i in range(1, N):
+    if time[i][1] < now:
+        continue
+    else:
+        cnt += 1
+        now = time[i][0]
 
 print(cnt)
