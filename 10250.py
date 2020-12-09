@@ -23,7 +23,7 @@ def solution(data):
         Y = data[0]
     else:
         X = data[2] // data[0] + 1
-        Y = max(1, data[2] % data[0])
+        Y = data[2] % data[0]
 
     return Y, X
 
@@ -32,7 +32,7 @@ def main():
     data_cnt = int(In())
     data_set = []
 
-    for i in range(data_cnt):
+    for _ in range(data_cnt):
         data = list(map(int, In().split()))
         data_set.append(data)
 
