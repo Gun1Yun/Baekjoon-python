@@ -1,17 +1,16 @@
 import sys
 from collections import defaultdict, deque
 
+sys.setrecursionlimit(10**6)
 In = sys.stdin.readline
-order = defaultdict(list)
 
 
-def bfs(target):
-    visited = []
-    queue = deque()
-    queue.append(1)
-    visited.append(1)
+def dfs(order, start, cost, building_cost):
 
-    while queue:
+    for b in order[start]:
+        building_cost[b] = max(
+            building_cost[b], building_cost[start] + cost[b-1])
+        dfs(order, b, cost, building_cost)
 
 
 def main():
@@ -24,12 +23,20 @@ def main():
         '''
         n, k = map(int, In().split())
         cost = list(map(int, In().split()))
+        order = defaultdict(list)
+
         for _ in range(k):
             # rules
             b1, b2 = map(int, In().split())
-            order[b1].append(b2)
             order[b2].append(b1)
         w = int(In())   # building num
+
+        building_cost = defaultdict(int)
+        building_cost[w] = cost[w-1]
+
+        dfs(order, w, cost, building_cost)
+
+        print('ans:', max(building_cost.values()))
 
 
 if __name__ == "__main__":
