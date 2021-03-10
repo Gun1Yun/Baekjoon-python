@@ -4,21 +4,21 @@ In = sys.stdin.readline
 
 
 def recruit(scores):
-    documents = sorted(scores, key=lambda x: x[0])
-    interviews = sorted(scores, key=lambda x: x[1])
-
-    start = documents[0]
-    finish = interviews[0]
+    scores.sort(key=lambda x: x[0])
     cnt = 1
 
-    if start == finish:
+    if scores[0] == [1, 1]:
         return cnt
 
-    for doc in documents:
-        if doc == finish:
+    best = scores[0][1]
+
+    for doc in scores:
+        if doc[1] == 1:
             cnt += 1
             break
-        if doc[1] < finish[0] and doc[1] < start[1]:
+
+        if doc[1] < best:
+            best = doc[1]
             cnt += 1
 
     return cnt
