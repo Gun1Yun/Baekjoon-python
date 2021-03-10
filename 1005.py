@@ -36,7 +36,7 @@ def main():
 
         dfs(order, w, cost, building_cost)
 
-        print('ans:', max(building_cost.values()))
+        print(max(building_cost.values()))
 
 
 if __name__ == "__main__":
