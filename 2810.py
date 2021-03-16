@@ -20,7 +20,7 @@ def main():
                 couple = 0
                 cnt += 1
 
-    print(cnt)
+    print(min(line, cnt))
 
 
 if __name__ == "__main__":
