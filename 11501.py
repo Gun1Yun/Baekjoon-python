@@ -20,27 +20,6 @@ def main():
             elif now < stocks[i]:
                 now = stocks[i]
 
-        # best = sorted(stocks, reverse=True)
-        # i = 0
-
-        # profit = 0
-        # cnt = 0
-        # last = 0
-        # # 나머지
-        # for stock in stocks:
-        #     if stock == best[i]:
-        #         profit += stock*cnt
-        #         last = 0
-        #         cnt = 0
-        #         i += 1
-        #         print('sell')
-        #     else:
-        #         profit -= stock
-        #         last += stock
-        #         cnt += 1
-        #         print('buy')
-        #         del best[b]
-
         print(profit)
 
 
