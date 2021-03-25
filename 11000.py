@@ -1,5 +1,6 @@
 # 강의실 배정
 import sys
+import heapq
 In = sys.stdin.readline
 
 
@@ -9,18 +10,22 @@ def main():
     for _ in range(n):
         classes.append(list(map(int, In().split())))
 
-    classes = sorted(classes, key=lambda x: (x[1], x[0]))
-    room = 1
-    now = [classes[0][1]]
+    classes = sorted(classes, key=lambda x: (x[0], x[1]))
+    print(classes)
+    rooms = []
+    heapq.heappush(rooms, classes[0][1])
 
     for i in range(1, len(classes)):
         start, finish = classes[i]
-        for j in range(len(now)):
-            if now[j] <= start:
-                now[j] = finish
-                break
 
-    print(cnt)
+        now = rooms[0]
+        if now <= start:
+            heapq.heappop(rooms)
+            heapq.heappush(rooms, finish)
+        else:
+            heapq.heappush(rooms, finish)
+
+    print(len(rooms))
 
 
 if __name__ == "__main__":
