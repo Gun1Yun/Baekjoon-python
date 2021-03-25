@@ -11,7 +11,6 @@ def main():
         classes.append(list(map(int, In().split())))
 
     classes = sorted(classes, key=lambda x: (x[0], x[1]))
-    print(classes)
     rooms = []
     heapq.heappush(rooms, classes[0][1])
 
